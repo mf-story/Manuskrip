@@ -287,7 +287,8 @@ function readingTime(body) {
 // Bersihkan HTML dari editor: hanya izinkan tag aman, buang semua atribut kecuali href pada <a>.
 const ALLOWED_TAGS = new Set([
   'p', 'br', 'div', 'span', 'strong', 'b', 'em', 'i', 'u', 's',
-  'h2', 'h3', 'h4', 'ul', 'ol', 'li', 'blockquote', 'a',
+  'h2', 'h3', 'h4', 'ul', 'ol', 'li', 'blockquote', 'a', 'img',
+  'table', 'thead', 'tbody', 'tfoot', 'tr', 'th', 'td', 'caption',
 ]);
 function sanitizeHtml(html) {
   let s = String(html || '');
@@ -296,8 +297,18 @@ function sanitizeHtml(html) {
   s = s.replace(/<\/?([a-zA-Z][a-zA-Z0-9]*)\b[^>]*>/g, (tag, name) => {
     name = name.toLowerCase();
     if (!ALLOWED_TAGS.has(name)) return '';
-    if (/^<\s*\//.test(tag)) return name === 'br' ? '' : `</${name}>`;
+    if (/^<\s*\//.test(tag)) return name === 'br' || name === 'img' ? '' : `</${name}>`;
     if (name === 'br') return '<br>';
+    if (name === 'img') {
+      const m = tag.match(/\ssrc\s*=\s*("([^"]*)"|'([^']*)'|([^\s>]+))/i);
+      let src = (m ? (m[2] || m[3] || m[4] || '') : '').trim();
+      if (/^\s*(javascript|vbscript):/i.test(src)) src = '';
+      if (src && !/^(https?:\/\/|\/uploads\/|data:image\/)/i.test(src)) src = '';
+      const am = tag.match(/\salt\s*=\s*("([^"]*)"|'([^']*)'|([^\s>]+))/i);
+      let alt = (am ? (am[2] || am[3] || am[4] || '') : '').trim().replace(/"/g, '%22');
+      src = src.replace(/"/g, '%22');
+      return src ? `<img src="${src}" alt="${alt}">` : '';
+    }
     if (name === 'a') {
       const m = tag.match(/\shref\s*=\s*("([^"]*)"|'([^']*)'|([^\s>]+))/i);
       let href = (m ? (m[2] || m[3] || m[4] || '') : '').trim();

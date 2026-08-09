@@ -78,6 +78,10 @@ body { font-family: var(--sans); background: var(--bg); color: var(--ink); line-
 .rte-editor.spacing-rapat p { margin: 0 0 .7em; }
 .rte-editor.spacing-longgar { line-height: 2.2; }
 .rte-editor.spacing-longgar p { margin: 0 0 1.3em; }
+.rte-editor img { max-width: 100%; height: auto; display: block; border-radius: 5px; margin: 8px 0; }
+.rte-editor table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: .95rem; }
+.rte-editor th, .rte-editor td { border: 1px solid var(--line); padding: 7px 9px; text-align: left; }
+.rte-editor th { background: var(--bg); font-weight: 700; }
 
 /* ===== Pilihan banyak kategori ===== */
 .cat-check-list { display: flex; flex-wrap: wrap; gap: 6px; }

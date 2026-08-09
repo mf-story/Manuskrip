@@ -440,7 +440,54 @@
     var tb = el('rteToolbar');
     var ed = el('fBody');
     if (!tb || !ed) return;
+    var savedRange = null;
     try { document.execCommand('defaultParagraphSeparator', false, 'p'); } catch (e) {}
+    function saveRange() {
+      var sel = window.getSelection();
+      savedRange = (sel && sel.rangeCount) ? sel.getRangeAt(0).cloneRange() : null;
+    }
+    function insertHtml(html) {
+      ed.focus();
+      if (savedRange) {
+        var sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(savedRange);
+      }
+      document.execCommand('insertHTML', false, html);
+      savedRange = null;
+    }
+    function buildTable() {
+      var cols = parseInt(prompt('Jumlah kolom:', '3'), 10);
+      if (!cols || cols < 1) return;
+      var rows = parseInt(prompt('Jumlah baris (termasuk baris judul):', '3'), 10);
+      if (!rows || rows < 1) return;
+      cols = Math.min(cols, 12); rows = Math.min(rows, 50);
+      var h = '<table><thead><tr>';
+      for (var c = 0; c < cols; c++) h += '<th>Judul ' + (c + 1) + '</th>';
+      h += '</tr></thead><tbody>';
+      for (var r = 0; r < rows - 1; r++) {
+        h += '<tr>';
+        for (var c2 = 0; c2 < cols; c2++) h += '<td>—</td>';
+        h += '</tr>';
+      }
+      h += '</tbody></table><p><br></p>';
+      insertHtml(h);
+    }
+    // Sisipkan gambar dalam isi berita.
+    el('fInlineImg').addEventListener('change', function () {
+      var file = this.files[0];
+      this.value = '';
+      if (!file) return;
+      if (file.size > 8 * 1024 * 1024) { toast('Ukuran gambar maksimal 8 MB.', true); return; }
+      var reader = new FileReader();
+      reader.onload = function () {
+        api('upload', { method: 'POST', body: { dataUrl: reader.result } }).then(function (data) {
+          insertHtml('<img src="' + data.path + '" alt=""><p><br></p>');
+          toast('Gambar disisipkan.');
+        }).catch(function (e) { toast(e.message, true); });
+      };
+      reader.readAsDataURL(file);
+    });
     // Jaga agar seleksi teks tidak hilang saat menekan tombol toolbar.
     tb.addEventListener('mousedown', function (e) {
       if (e.target.closest('.rte-btn')) e.preventDefault();
@@ -454,6 +501,12 @@
       } else if (btn.dataset.cmd === 'createLink') {
         var url = prompt('Masukkan URL tautan:', 'https://');
         if (url) document.execCommand('createLink', false, url);
+      } else if (btn.dataset.cmd === 'insertImage') {
+        saveRange();
+        el('fInlineImg').click();
+      } else if (btn.dataset.cmd === 'insertTable') {
+        saveRange();
+        buildTable();
       } else if (btn.dataset.cmd) {
         document.execCommand(btn.dataset.cmd, false, null);
       }

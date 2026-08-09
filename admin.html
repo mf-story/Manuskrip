@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="admin.css?v=7" />
+  <link rel="stylesheet" href="admin.css?v=8" />
 </head>
 <body>
   <!-- Login -->
@@ -133,8 +133,11 @@
                   <button type="button" class="rte-btn" data-block="blockquote" title="Kutipan">❝</button>
                   <span class="rte-sep"></span>
                   <button type="button" class="rte-btn" data-cmd="createLink" title="Sisipkan tautan">🔗</button>
+                  <button type="button" class="rte-btn" data-cmd="insertImage" title="Sisipkan gambar">🖼️</button>
+                  <button type="button" class="rte-btn" data-cmd="insertTable" title="Sisipkan tabel">▦</button>
                   <button type="button" class="rte-btn" data-cmd="removeFormat" title="Bersihkan format">⨯</button>
                 </div>
+                <input id="fInlineImg" type="file" accept="image/*" hidden />
                 <div id="fBody" class="rte-editor" contenteditable="true" data-placeholder="Tulis isi berita di sini…"></div>
               </div>
             </div>
@@ -241,6 +244,6 @@
 
   <div id="toast" class="toast" hidden></div>
 
-  <script src="admin.js?v=6"></script>
+  <script src="admin.js?v=7"></script>
 </body>
 </html>

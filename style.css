@@ -344,6 +344,19 @@ img { max-width: 100%; display: block; }
 .article-body.spacing-longgar p, .article-body.spacing-longgar ul, .article-body.spacing-longgar ol { line-height: 2.2; }
 .article-body.spacing-longgar p { margin-bottom: 28px; }
 .article-body.spacing-longgar li { margin-bottom: 14px; }
+/* Gambar & tabel di dalam berita */
+.article-body img {
+  max-width: 100%; height: auto; display: block; border-radius: 6px; margin: 14px auto 8px;
+}
+.article-body table {
+  width: 100%; border-collapse: collapse; margin: 24px 0; font-family: var(--sans);
+  font-size: 1rem; line-height: 1.5;
+}
+.article-body th, .article-body td {
+  border: 1px solid var(--line); padding: 10px 12px; text-align: left; vertical-align: top;
+}
+.article-body th { background: var(--bg); font-weight: 800; }
+.article-body caption { caption-side: bottom; font-size: .85rem; color: var(--muted); padding-top: 8px; }
 .av-tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 28px 0; }
 .av-share { display: flex; gap: 10px; align-items: center; margin: 20px 0 34px; flex-wrap: wrap; }
 .av-share span { font-weight: 700; font-size: .85rem; }
