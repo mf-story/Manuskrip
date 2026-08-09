@@ -148,6 +148,13 @@
     return Array.prototype.map.call(
       el('fCategories').querySelectorAll('input:checked'), function (cb) { return cb.value; });
   }
+  function applyEditorSpacing() {
+    var v = el('fSpacing').value;
+    var ed = el('fBody');
+    ed.classList.remove('spacing-rapat', 'spacing-normal', 'spacing-longgar');
+    ed.classList.add('spacing-' + v);
+  }
+  el('fSpacing').addEventListener('change', applyEditorSpacing);
 
   // ---------- Tabs ----------
   var tabs = document.querySelectorAll('.atab');
@@ -345,6 +352,8 @@
     el('fAuthor').value = me ? me.name : '';
     el('fTags').value = '';
     setCategories([categories[0] || '']);
+    el('fSpacing').value = 'normal';
+    applyEditorSpacing();
     el('fPublished').checked = true;
     el('fFeatured').checked = false;
     el('fBreaking').checked = false;
@@ -371,6 +380,8 @@
       el('fAuthor').value = a.author || '';
       el('fTags').value = (a.tags || []).join(', ');
       setCategories(a.categories && a.categories.length ? a.categories : [a.category || categories[0]]);
+      el('fSpacing').value = a.spacing || 'normal';
+      applyEditorSpacing();
       el('fPublished').checked = !!a.published;
       el('fFeatured').checked = !!a.featured;
       el('fBreaking').checked = !!a.breaking;
@@ -477,6 +488,7 @@
       categories: cats,
       tags: el('fTags').value,
       image: currentImage,
+      spacing: el('fSpacing').value,
       published: el('fPublished').checked,
       featured: el('fFeatured').checked,
       breaking: el('fBreaking').checked,

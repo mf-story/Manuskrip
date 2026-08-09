@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="admin.css?v=6" />
+  <link rel="stylesheet" href="admin.css?v=7" />
 </head>
 <body>
   <!-- Login -->
@@ -156,6 +156,15 @@
                 <input id="fAuthor" type="text" placeholder="Nama penulis / redaksi" />
               </div>
               <div class="side-block">
+                <h4>Spasi Baris</h4>
+                <select id="fSpacing">
+                  <option value="rapat">Rapat</option>
+                  <option value="normal" selected>Normal</option>
+                  <option value="longgar">Longgar</option>
+                </select>
+                <p class="cat-hint muted">Mengatur jarak antarbaris isi berita.</p>
+              </div>
+              <div class="side-block">
                 <h4>Tagar</h4>
                 <input id="fTags" type="text" placeholder="pisahkan, dengan, koma" />
               </div>
@@ -232,6 +241,6 @@
 
   <div id="toast" class="toast" hidden></div>
 
-  <script src="admin.js?v=5"></script>
+  <script src="admin.js?v=6"></script>
 </body>
 </html>

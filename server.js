@@ -325,6 +325,7 @@ function publicArticle(a, full) {
     featured: !!a.featured,
     breaking: !!a.breaking,
     published: !!a.published,
+    spacing: a.spacing || 'normal',
     views: a.views || 0,
     readingTime: readingTime(a.body),
     createdAt: a.createdAt,
@@ -518,6 +519,7 @@ async function handleApi(req, res, url) {
         featured: !!b.featured,
         breaking: !!b.breaking,
         published: b.published !== false,
+        spacing: ['rapat', 'normal', 'longgar'].includes(b.spacing) ? b.spacing : 'normal',
         views: 0,
         createdAt: now,
         updatedAt: now,
@@ -574,6 +576,7 @@ async function handleApi(req, res, url) {
       if (b.featured !== undefined) art.featured = !!b.featured;
       if (b.breaking !== undefined) art.breaking = !!b.breaking;
       if (b.published !== undefined) art.published = !!b.published;
+      if (['rapat', 'normal', 'longgar'].includes(b.spacing)) art.spacing = b.spacing;
       art.updatedAt = new Date().toISOString();
       saveDbDebounced();
       return sendJson(res, 200, { article: publicArticle(art, true) });

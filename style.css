@@ -338,6 +338,12 @@ img { max-width: 100%; display: block; }
 }
 .article-body a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
 .article-body strong, .article-body b { font-weight: 700; color: var(--ink); }
+/* Pilihan spasi baris per berita */
+.article-body.spacing-rapat p, .article-body.spacing-rapat ul, .article-body.spacing-rapat ol { line-height: 1.55; }
+.article-body.spacing-rapat p { margin-bottom: 16px; }
+.article-body.spacing-longgar p, .article-body.spacing-longgar ul, .article-body.spacing-longgar ol { line-height: 2.2; }
+.article-body.spacing-longgar p { margin-bottom: 28px; }
+.article-body.spacing-longgar li { margin-bottom: 14px; }
 .av-tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 28px 0; }
 .av-share { display: flex; gap: 10px; align-items: center; margin: 20px 0 34px; flex-wrap: wrap; }
 .av-share span { font-weight: 700; font-size: .85rem; }

@@ -74,6 +74,10 @@ body { font-family: var(--sans); background: var(--bg); color: var(--ink); line-
   color: var(--ink-soft); font-family: var(--serif); font-style: italic;
 }
 .rte-editor a { color: var(--accent); }
+.rte-editor.spacing-rapat { line-height: 1.55; }
+.rte-editor.spacing-rapat p { margin: 0 0 .7em; }
+.rte-editor.spacing-longgar { line-height: 2.2; }
+.rte-editor.spacing-longgar p { margin: 0 0 1.3em; }
 
 /* ===== Pilihan banyak kategori ===== */
 .cat-check-list { display: flex; flex-wrap: wrap; gap: 6px; }

@@ -364,7 +364,7 @@
     if (a.image) {
       h += '<img class="av-img" src="' + esc(a.image) + '" alt="' + esc(a.title) + '" />';
     }
-    h += '<div class="article-body">' + bodyHtml + '</div>';
+    h += '<div class="article-body spacing-' + esc(a.spacing || 'normal') + '">' + bodyHtml + '</div>';
 
     if (a.tags && a.tags.length) {
       h += '<div class="av-tags">' + a.tags.map(function (t) {
