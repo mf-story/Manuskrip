@@ -310,7 +310,7 @@ img { max-width: 100%; display: block; }
   font-size: 1.12rem; line-height: 1.85; margin-bottom: 22px; color: var(--ink);
   text-align: justify; text-justify: inter-word; hyphens: auto;
 }
-.article-body p:first-of-type::first-letter {
+.article-body > p:first-of-type::first-letter {
   font-family: var(--serif); font-size: 3.6rem; font-weight: 900; float: left;
   line-height: .8; margin: 6px 12px 0 0; color: var(--accent);
 }
@@ -358,6 +358,14 @@ img { max-width: 100%; display: block; }
 }
 .article-body th { background: var(--bg); font-weight: 800; }
 .article-body caption { caption-side: bottom; font-size: .85rem; color: var(--muted); padding-top: 8px; }
+/* Isi sel tabel: format biasa (tanpa drop cap / justify) */
+.article-body td p, .article-body th p {
+  margin: 0; font-size: 1rem; line-height: 1.5; text-align: left; hyphens: manual;
+}
+.article-body td p::first-letter, .article-body th p::first-letter {
+  font-family: inherit; font-size: inherit; font-weight: inherit; float: none;
+  line-height: inherit; margin: 0; color: inherit;
+}
 .av-tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 28px 0; }
 .av-share { display: flex; gap: 10px; align-items: center; margin: 20px 0 34px; flex-wrap: wrap; }
 .av-share span { font-weight: 700; font-size: .85rem; }
