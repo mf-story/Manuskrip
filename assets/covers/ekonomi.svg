@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#15803d"/>
+      <stop offset="1" stop-color="#14532d"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#g)"/>
+  <circle cx="690" cy="70" r="160" fill="#ffffff" opacity="0.08"/>
+  <circle cx="120" cy="410" r="130" fill="#000000" opacity="0.10"/>
+  <g transform="translate(556,130)" fill="#ffffff" opacity="0.95">
+    <rect x="0" y="110" width="34" height="60" rx="4"/>
+    <rect x="46" y="70" width="34" height="100" rx="4"/>
+    <rect x="92" y="30" width="34" height="140" rx="4"/>
+    <path d="M8 96 L58 60 L100 78 L150 24" fill="none" stroke="#ffffff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M150 24 L126 30 M150 24 L144 48" stroke="#ffffff" stroke-width="7" stroke-linecap="round" fill="none"/>
+  </g>
+  <g fill="#ffffff">
+    <rect x="60" y="70" width="46" height="5" rx="2.5" opacity="0.85"/>
+    <text x="60" y="100" font-family="Georgia, 'Times New Roman', serif" font-size="20" letter-spacing="3" opacity="0.85">MANUSKRIP</text>
+  </g>
+</svg>

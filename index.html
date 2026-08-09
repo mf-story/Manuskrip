@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manuskrip — Kabar Terkini dari Berbagai Penjuru</title>
+  <meta name="description" content="Manuskrip menyajikan berita terbaru seputar nasional, internasional, ekonomi, teknologi, olahraga, hiburan, dan lainnya." />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;0,900;1,600&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css?v=12" />
+</head>
+<body>
+  <!-- Bar atas: tanggal + aksi -->
+  <div class="topbar">
+    <div class="wrap topbar-inner">
+      <span id="todayDate" class="today-date">—</span>
+      <div class="topbar-actions">
+        <button id="themeToggle" class="icon-btn" title="Mode gelap/terang" aria-label="Ganti tema">🌙</button>
+        <a href="admin.html" class="topbar-link">Masuk Redaksi</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Masthead -->
+  <header class="masthead">
+    <div class="wrap masthead-inner">
+      <button id="menuToggle" class="menu-toggle" aria-label="Menu">☰</button>
+      <a href="#" class="brand" id="brandHome">
+        <span class="brand-mark">M</span>
+        <span class="brand-text">
+          <span class="brand-name">Manuskrip</span>
+          <span class="brand-tag">Kabar terkini dari berbagai penjuru</span>
+        </span>
+      </a>
+      <div class="masthead-search">
+        <input id="searchInput" type="search" placeholder="Cari berita, topik, atau tagar…" aria-label="Cari berita" />
+        <button id="searchBtn" class="search-btn" aria-label="Cari">🔎</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navigasi kategori -->
+  <nav class="catnav">
+    <div class="wrap catnav-inner" id="catNav"></div>
+  </nav>
+
+  <!-- Breaking ticker -->
+  <div class="ticker" id="ticker" hidden>
+    <span class="ticker-label">TERKINI</span>
+    <div class="ticker-viewport">
+      <div class="ticker-track" id="tickerTrack"></div>
+    </div>
+  </div>
+
+  <main class="wrap main">
+    <!-- Tampilan Beranda -->
+    <section id="homeView">
+      <!-- Hero -->
+      <div class="hero" id="heroArea"></div>
+
+      <!-- Konten utama + sidebar -->
+      <div class="layout">
+        <div class="content">
+          <div class="section-head">
+            <h2 id="listTitle">Berita Terbaru</h2>
+            <div class="sort-tabs" id="sortTabs">
+              <button class="sort-tab active" data-sort="newest">Terbaru</button>
+              <button class="sort-tab" data-sort="popular">Terpopuler</button>
+            </div>
+          </div>
+          <div class="grid" id="articleGrid"></div>
+          <p class="empty" id="emptyMsg" hidden>Tidak ada berita yang cocok.</p>
+        </div>
+
+        <aside class="sidebar">
+          <div class="side-card">
+            <h3 class="side-title">🔥 Terpopuler</h3>
+            <ol class="popular-list" id="popularList"></ol>
+          </div>
+          <div class="side-card">
+            <h3 class="side-title">🏷️ Topik Pilihan</h3>
+            <div class="tag-cloud" id="tagCloud"></div>
+          </div>
+          <div class="side-card newsletter">
+            <h3 class="side-title">📩 Buletin Harian</h3>
+            <p class="muted">Dapatkan rangkuman berita langsung ke email Anda.</p>
+            <form id="newsletterForm" class="newsletter-form">
+              <input type="email" placeholder="Alamat email" required />
+              <button type="submit">Langganan</button>
+            </form>
+            <p class="newsletter-note" id="newsletterNote" hidden>Terima kasih! Anda telah berlangganan (contoh).</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Tampilan Artikel -->
+    <article id="articleView" class="article-view" hidden></article>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <div class="footer-brand">
+        <span class="brand-mark">M</span>
+        <div>
+          <strong>Manuskrip</strong>
+          <p class="muted">Portal berita independen yang menyajikan kabar dari berbagai aspek kehidupan.</p>
+        </div>
+      </div>
+      <div class="footer-cats" id="footerCats"></div>
+      <div class="footer-meta">
+        <p class="muted">© <span id="year"></span> Manuskrip. Konten contoh untuk keperluan demonstrasi.</p>
+        <a href="admin.html" class="muted">Panel Redaksi →</a>
+      </div>
+    </div>
+  </footer>
+
+  <button id="toTop" class="to-top" title="Ke atas" hidden>↑</button>
+
+  <script src="app.js?v=7"></script>
+</body>
+</html>

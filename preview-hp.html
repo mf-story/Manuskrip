@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pratinjau Mode HP — Manuskrip</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh; display: flex; flex-direction: column;
+      align-items: center; gap: 14px; padding: 20px 10px 40px;
+      background: #2b2b2b; font-family: system-ui, sans-serif;
+    }
+    .bar { color: #eee; font-size: 13px; letter-spacing: .04em; }
+    .bar b { color: #fff; }
+    .phone {
+      width: 390px; height: 780px; border: 10px solid #111; border-radius: 34px;
+      overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,.5); background: #000;
+      position: relative; flex: 0 0 auto;
+    }
+    .notch {
+      position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+      width: 150px; height: 22px; background: #111; border-radius: 0 0 16px 16px; z-index: 2;
+    }
+    iframe { width: 100%; height: 100%; border: 0; background: #fff; }
+    .hint { color: #bbb; font-size: 12px; max-width: 390px; text-align: center; line-height: 1.5; }
+  </style>
+</head>
+<body>
+  <div class="bar">Pratinjau <b>Mode HP</b> — lebar 390px</div>
+  <div class="phone">
+    <div class="notch"></div>
+    <iframe src="/?hp=1" title="Pratinjau HP Manuskrip"></iframe>
+  </div>
+  <div class="hint">Ini bingkai simulasi ponsel. Tata letak di dalamnya sama persis dengan tampilan di HP sungguhan.</div>
+</body>
+</html>

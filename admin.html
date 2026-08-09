@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Panel Redaksi — Manuskrip</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="admin.css?v=5" />
+</head>
+<body>
+  <!-- Login -->
+  <div id="loginScreen" class="login-screen">
+    <form id="loginForm" class="login-card">
+      <div class="login-brand"><span class="brand-mark">M</span></div>
+      <h1>Panel Redaksi</h1>
+      <p class="muted">Masuk untuk mengelola berita Manuskrip.</p>
+      <label>Nama pengguna
+        <input id="loginUser" type="text" autocomplete="username" required />
+      </label>
+      <label>Kata sandi
+        <input id="loginPass" type="password" autocomplete="current-password" required />
+      </label>
+      <p id="loginError" class="form-error" hidden></p>
+      <button type="submit" class="btn btn-primary btn-block">Masuk</button>
+      <p class="login-hint muted">Default: <b>admin</b> / <b>admin123</b></p>
+      <a href="index.html" class="muted back-link">← Kembali ke portal</a>
+    </form>
+  </div>
+
+  <!-- Aplikasi -->
+  <div id="app" class="app" hidden>
+    <header class="admin-top">
+      <div class="admin-brand">
+        <span class="brand-mark">M</span>
+        <div>
+          <strong>Manuskrip</strong>
+          <span class="admin-sub">Panel Redaksi</span>
+        </div>
+      </div>
+      <div class="admin-top-actions">
+        <a href="index.html" target="_blank" class="btn btn-ghost">Lihat Portal ↗</a>
+        <span id="userName" class="user-chip"></span>
+        <button id="pwBtn" class="btn btn-ghost" title="Ubah kata sandi">🔑</button>
+        <button id="logoutBtn" class="btn btn-ghost">Keluar</button>
+      </div>
+    </header>
+
+    <nav class="admin-tabs">
+      <button class="atab active" data-tab="dashboard">📊 Dasbor</button>
+      <button class="atab" data-tab="articles">📰 Berita</button>
+      <button class="atab" data-tab="editor">✍️ Tulis Berita</button>
+      <button class="atab" data-tab="users" id="usersTabBtn" hidden>👥 Pengguna</button>
+    </nav>
+
+    <main class="admin-main">
+      <!-- Dasbor -->
+      <section id="tab-dashboard" class="tab-panel">
+        <div class="stat-cards" id="statCards"></div>
+        <div class="dash-grid">
+          <div class="panel">
+            <h3 class="panel-title">Berita per Kategori</h3>
+            <div id="catChart" class="cat-chart"></div>
+          </div>
+          <div class="panel">
+            <h3 class="panel-title">Berita Terbaru</h3>
+            <ul id="recentList" class="recent-list"></ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Daftar berita -->
+      <section id="tab-articles" class="tab-panel" hidden>
+        <div class="toolbar">
+          <div class="toolbar-left">
+            <input id="artSearch" type="search" placeholder="Cari judul…" />
+            <select id="artCatFilter"><option value="">Semua kategori</option></select>
+            <select id="artStatusFilter">
+              <option value="">Semua status</option>
+              <option value="published">Terbit</option>
+              <option value="draft">Draf</option>
+            </select>
+          </div>
+          <button id="newArtBtn" class="btn btn-primary">+ Tulis Berita</button>
+        </div>
+        <div class="table-wrap">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Judul</th><th>Kategori</th><th>Status</th><th>Dibaca</th><th>Tanggal</th><th></th>
+              </tr>
+            </thead>
+            <tbody id="artTableBody"></tbody>
+          </table>
+        </div>
+        <p id="artEmpty" class="empty" hidden>Belum ada berita.</p>
+      </section>
+
+      <!-- Editor -->
+      <section id="tab-editor" class="tab-panel" hidden>
+        <form id="editorForm" class="editor">
+          <div class="editor-head">
+            <h2 id="editorTitle">Tulis Berita Baru</h2>
+            <div class="editor-head-actions">
+              <button type="button" id="cancelEdit" class="btn btn-ghost">Batal</button>
+              <button type="submit" class="btn btn-primary" id="saveBtn">Terbitkan</button>
+            </div>
+          </div>
+
+          <div class="editor-grid">
+            <div class="editor-main">
+              <label>Judul berita
+                <input id="fTitle" type="text" placeholder="Tulis judul yang menarik…" required />
+              </label>
+              <label>Ringkasan / teras
+                <textarea id="fExcerpt" rows="2" placeholder="Ringkasan singkat yang muncul di kartu berita"></textarea>
+              </label>
+              <label class="rte-label">Isi berita</label>
+              <div class="rte">
+                <div class="rte-toolbar" id="rteToolbar">
+                  <button type="button" class="rte-btn" data-cmd="bold" title="Tebal (Ctrl+B)"><b>B</b></button>
+                  <button type="button" class="rte-btn" data-cmd="italic" title="Miring (Ctrl+I)"><i>I</i></button>
+                  <button type="button" class="rte-btn" data-cmd="underline" title="Garis bawah (Ctrl+U)"><u>U</u></button>
+                  <span class="rte-sep"></span>
+                  <button type="button" class="rte-btn" data-block="h2" title="Judul bagian">H2</button>
+                  <button type="button" class="rte-btn" data-block="h3" title="Subjudul">H3</button>
+                  <button type="button" class="rte-btn" data-block="p" title="Paragraf biasa">¶</button>
+                  <span class="rte-sep"></span>
+                  <button type="button" class="rte-btn" data-cmd="insertUnorderedList" title="Daftar poin">• List</button>
+                  <button type="button" class="rte-btn" data-cmd="insertOrderedList" title="Daftar bernomor">1. List</button>
+                  <button type="button" class="rte-btn" data-block="blockquote" title="Kutipan">❝</button>
+                  <span class="rte-sep"></span>
+                  <button type="button" class="rte-btn" data-cmd="createLink" title="Sisipkan tautan">🔗</button>
+                  <button type="button" class="rte-btn" data-cmd="removeFormat" title="Bersihkan format">⨯</button>
+                </div>
+                <div id="fBody" class="rte-editor" contenteditable="true" data-placeholder="Tulis isi berita di sini…"></div>
+              </div>
+            </div>
+
+            <aside class="editor-side">
+              <div class="side-block">
+                <h4>Publikasi</h4>
+                <label class="check"><input type="checkbox" id="fPublished" checked /> Terbitkan sekarang</label>
+                <label class="check"><input type="checkbox" id="fFeatured" /> Jadikan berita utama (hero)</label>
+                <label class="check"><input type="checkbox" id="fBreaking" /> Tampilkan di berita terkini (ticker)</label>
+              </div>
+              <div class="side-block">
+                <h4>Kategori</h4>
+                <div id="fCategories" class="cat-check-list"></div>
+                <p class="cat-hint muted">Bisa pilih lebih dari satu.</p>
+              </div>
+              <div class="side-block">
+                <h4>Penulis</h4>
+                <input id="fAuthor" type="text" placeholder="Nama penulis / redaksi" />
+              </div>
+              <div class="side-block">
+                <h4>Tagar</h4>
+                <input id="fTags" type="text" placeholder="pisahkan, dengan, koma" />
+              </div>
+              <div class="side-block">
+                <h4>Gambar Sampul</h4>
+                <div id="imgPreview" class="img-preview empty">Belum ada gambar</div>
+                <input id="fImageFile" type="file" accept="image/*" hidden />
+                <div class="img-actions">
+                  <button type="button" id="pickImg" class="btn btn-ghost btn-sm">Pilih Gambar</button>
+                  <button type="button" id="clearImg" class="btn btn-ghost btn-sm" hidden>Hapus</button>
+                </div>
+                <input id="fImageUrl" type="text" placeholder="atau tempel URL gambar" />
+              </div>
+            </aside>
+          </div>
+          <p id="editorError" class="form-error" hidden></p>
+        </form>
+      </section>
+
+      <!-- Pengguna -->
+      <section id="tab-users" class="tab-panel" hidden>
+        <div class="users-grid">
+          <div class="panel">
+            <h3 class="panel-title">Tambah Pengguna</h3>
+            <form id="userForm" class="user-form">
+              <label>Nama lengkap
+                <input id="uName" type="text" placeholder="mis. Budi Santoso" required />
+              </label>
+              <label>Username
+                <input id="uUsername" type="text" placeholder="huruf kecil, angka, . atau _" autocomplete="off" required />
+              </label>
+              <label>Peran
+                <select id="uRole">
+                  <option value="author">Penulis (menulis berita)</option>
+                  <option value="admin">Admin (akses penuh)</option>
+                </select>
+              </label>
+              <label>Kata sandi
+                <input id="uPassword" type="password" placeholder="minimal 6 karakter" autocomplete="new-password" required />
+              </label>
+              <p id="userError" class="form-error" hidden></p>
+              <button type="submit" class="btn btn-primary btn-block">Tambah Pengguna</button>
+            </form>
+          </div>
+          <div class="panel">
+            <h3 class="panel-title">Daftar Pengguna</h3>
+            <div class="table-wrap">
+              <table class="table">
+                <thead>
+                  <tr><th>Nama</th><th>Username</th><th>Peran</th><th></th></tr>
+                </thead>
+                <tbody id="userTableBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Modal ubah kata sandi -->
+  <div id="pwModal" class="modal-overlay" hidden>
+    <form id="pwForm" class="modal">
+      <h3>Ubah Kata Sandi</h3>
+      <label>Kata sandi lama <input id="pwCurrent" type="password" required /></label>
+      <label>Kata sandi baru <input id="pwNext" type="password" minlength="6" required /></label>
+      <p id="pwError" class="form-error" hidden></p>
+      <div class="modal-actions">
+        <button type="button" id="pwCancel" class="btn btn-ghost">Batal</button>
+        <button type="submit" class="btn btn-primary">Simpan</button>
+      </div>
+    </form>
+  </div>
+
+  <div id="toast" class="toast" hidden></div>
+
+  <script src="admin.js?v=5"></script>
+</body>
+</html>

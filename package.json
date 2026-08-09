@@ -1,0 +1,13 @@
+{
+  "name": "manuskrip",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Manuskrip - Portal Berita (Node.js, tanpa dependensi npm)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

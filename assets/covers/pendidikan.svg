@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#b45309"/>
+      <stop offset="1" stop-color="#7c3d06"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#g)"/>
+  <circle cx="690" cy="70" r="160" fill="#ffffff" opacity="0.08"/>
+  <circle cx="120" cy="410" r="130" fill="#000000" opacity="0.10"/>
+  <g transform="translate(552,132)" fill="#ffffff" opacity="0.95">
+    <polygon points="80,30 160,68 80,106 0,68"/>
+    <path d="M40 86 V128 C40 146 120 146 120 128 V86" fill="none" stroke="#ffffff" stroke-width="10"/>
+    <line x1="160" y1="68" x2="160" y2="120" stroke="#ffffff" stroke-width="7" stroke-linecap="round"/>
+    <circle cx="160" cy="126" r="8"/>
+  </g>
+  <g fill="#ffffff">
+    <rect x="60" y="70" width="46" height="5" rx="2.5" opacity="0.85"/>
+    <text x="60" y="100" font-family="Georgia, 'Times New Roman', serif" font-size="20" letter-spacing="3" opacity="0.85">MANUSKRIP</text>
+  </g>
+</svg>
