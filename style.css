@@ -294,6 +294,7 @@ img { max-width: 100%; display: block; }
 .article-view .av-excerpt {
   font-size: 1.15rem; color: var(--ink); font-style: normal; font-weight: 600;
   line-height: 1.55; margin-bottom: 20px; font-family: var(--sans);
+  text-align: justify; text-justify: inter-word;
 }
 .article-view .av-meta {
   display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center;
