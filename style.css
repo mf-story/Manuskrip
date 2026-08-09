@@ -435,7 +435,10 @@ img { max-width: 100%; display: block; }
   .hero-main h1 { font-size: 1.6rem; }
   .article-view h1 { font-size: 1.8rem; }
   .article-view .av-excerpt { font-size: 1rem; line-height: 1.55; text-align: justify; }
-  .article-body p:first-of-type::first-letter { font-size: 2.8rem; }
+  .article-body > p:first-of-type::first-letter { font-size: 2.8rem; }
+  /* Tabel di HP: muat dalam lebar layar, sel wrap, tanpa geser horizontal */
+  .article-body table { table-layout: fixed; width: 100%; font-size: .9rem; }
+  .article-body th, .article-body td { padding: 8px 9px; word-wrap: break-word; overflow-wrap: anywhere; }
   .related-grid { grid-template-columns: 1fr; }
   .section-head { flex-direction: column; align-items: flex-start; gap: 10px; }
 }
