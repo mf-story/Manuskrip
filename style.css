@@ -11,6 +11,7 @@
   --gold: #b8860b;
   --shadow: 0 1px 3px rgba(0, 0, 0, .08), 0 8px 24px rgba(0, 0, 0, .05);
   --serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --display: 'Zilla Slab', Georgia, 'Times New Roman', serif;
   --sans: 'Source Sans 3', system-ui, -apple-system, sans-serif;
   --radius: 4px;
 }
@@ -158,10 +159,10 @@ img { max-width: 100%; display: block; }
   padding: 4px 10px; border-radius: 2px; margin-bottom: 12px;
 }
 .hero-main h1 {
-  font-family: var(--serif); font-weight: 800; font-size: 2.2rem;
-  line-height: 1.12; margin-bottom: 10px;
+  font-family: var(--display); font-weight: 700; font-size: 2.3rem;
+  line-height: 1.14; margin-bottom: 10px;
 }
-.hero-main .hero-excerpt { font-size: 1rem; opacity: .9; max-width: 90%; }
+.hero-main .hero-excerpt { font-size: 1rem; font-weight: 600; opacity: .92; max-width: 90%; }
 .hero-main .hero-meta { margin-top: 12px; font-size: .8rem; opacity: .8; }
 
 .hero-side { display: grid; grid-template-rows: 1fr 1fr; gap: 20px; }
@@ -170,7 +171,7 @@ img { max-width: 100%; display: block; }
   min-height: 200px; background: var(--ink); color: #fff; cursor: pointer;
 }
 .hs-body { position: absolute; left: 0; right: 0; bottom: 0; padding: 16px; }
-.hs h3 { font-family: var(--serif); font-weight: 700; font-size: 1.15rem; line-height: 1.2; }
+.hs h3 { font-family: var(--display); font-weight: 700; font-size: 1.15rem; line-height: 1.2; }
 .hs .hero-cat { margin-bottom: 8px; }
 
 /* Layout */
@@ -180,7 +181,7 @@ img { max-width: 100%; display: block; }
   border-bottom: 2px solid var(--ink); padding-bottom: 8px; margin-bottom: 22px;
 }
 .section-head h2 {
-  font-family: var(--serif); font-weight: 800; font-size: 1.5rem;
+  font-family: var(--display); font-weight: 700; font-size: 1.5rem;
   position: relative; padding-left: 14px;
 }
 .section-head h2::before {
@@ -216,7 +217,7 @@ img { max-width: 100%; display: block; }
 .card-thumb .card-cat { position: absolute; top: 10px; left: 10px; margin: 0; }
 .card-body { padding: 16px 18px 18px; display: flex; flex-direction: column; flex: 1; }
 .card h3 {
-  font-family: var(--serif); font-weight: 700; font-size: 1.2rem;
+  font-family: var(--display); font-weight: 700; font-size: 1.2rem;
   line-height: 1.25; margin-bottom: 8px;
 }
 .card:hover h3 { color: var(--accent); }
@@ -287,12 +288,12 @@ img { max-width: 100%; display: block; }
   padding: 5px 12px; border-radius: 2px; margin: 0 6px 16px 0;
 }
 .article-view h1 {
-  font-family: var(--serif); font-weight: 800; font-size: 2.5rem;
-  line-height: 1.14; margin-bottom: 16px;
+  font-family: var(--display); font-weight: 700; font-size: 2.5rem;
+  line-height: 1.16; margin-bottom: 16px; letter-spacing: -.01em;
 }
 .article-view .av-excerpt {
-  font-size: 1.2rem; color: var(--ink-soft); font-style: italic;
-  line-height: 1.5; margin-bottom: 20px; font-family: var(--serif);
+  font-size: 1.15rem; color: var(--ink); font-style: normal; font-weight: 600;
+  line-height: 1.55; margin-bottom: 20px; font-family: var(--sans);
 }
 .article-view .av-meta {
   display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center;
@@ -367,7 +368,7 @@ img { max-width: 100%; display: block; }
 }
 .share-btn:hover { background: var(--ink); color: #fff; border-color: var(--ink); }
 .related-head {
-  font-family: var(--serif); font-weight: 800; font-size: 1.4rem;
+  font-family: var(--display); font-weight: 700; font-size: 1.4rem;
   border-bottom: 2px solid var(--ink); padding-bottom: 8px; margin: 36px 0 6px;
 }
 .related-sub { color: var(--muted); font-size: .92rem; margin: 0 0 20px; }
